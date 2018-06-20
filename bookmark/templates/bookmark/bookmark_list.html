@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Django Bookmark List{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div id="content" style="margin-left:40px;">
+    <br/><br/><br/>
+    <h2>{% firstof user.get_short_name user.get_username %}님의 구독 장바구니</h2>
+
+    <ul>
+        <div class="col">
+        <div class="row">
+          {% for SubList in bookmark %}
+        <div class="mb-0" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="card">
+          <div class="card-header" role="tab" id="headingOne">
+              <a data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+                 <li>물건 : {{ SubList.title }}</li>
+            	<li>가격 : {{ SubList.price }} 원</li>
+                 <li>개수 : {{ SubList.amount }} 개</li>
+
+              </a>
+
+          </div>
+
+
+
+        {% endfor %}
+            </div>
+            </div>
+    </ul>
+
+
+    <a href="http://localhost:8000/bookmark/add/" >
+      <button type="button">구독 신청</button>
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}home.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/home.css" %}{% endblock %}
+
+{% block content %}
+
+<div id="content_home">
+
+    <div id="homeimg" style="align-content: center; width:1500px;">
+        <a href="/"><img src="{% static 'img/home.jpg' %}" style="height:600px;"/></a>
+    </div>
+
+    <hr style="margin: 5px 0;">
+
+
+</div>
+{% endblock content %}
+
+{% block footer %}
+<div id="footer" style="float:bottom">
+</div>
+{% endblock footer %}

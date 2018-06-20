@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}photo_detail.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+{% block content %}
+<div id="content" style="margin-left:40px;">
+
+    <h2>{{ object.origin }}</h2>
+
+    <table class="photo-detail">
+    <tr>
+    <td>
+        <a href="{{ object.image.url }}">
+        <img style="max-width:100%" src="{{ object.image.url }}" />
+        </a>
+    </td>
+
+    <td>
+    <ul>
+        <li>원산지</li>
+        <p><a href="{% url 'photo:album_detail' object.album.id %}">{{ object.album.name }}</a></p>
+        <li>가격</li>
+        <p>{{object}}원</p>
+        <li>수량</li>
+        <p>{{object.cnt}}개</p>
+        <li>구독 점수 </li>
+        <p>{{object.Subscription_ratings}}점</p>
+        <li>구독 후 재구매 횟수</li>
+        <p>{{ object.purchase_after_sub}}번</p>
+        <li>Photo Description</li>
+        {% if object.description %}<p>{{ object.description|linebreaks }}</p>
+        {% else %}<p>(blank)</p>{% endif %}
+        <form action="http://localhost:8000/photo/buy/" method="post">{% csrf_token %}
+        <input type="submit" value="전송" />
+        </form>
+
+    </ul>
+    </td>
+    </tr></table>
+
+</div>
+{% endblock %}

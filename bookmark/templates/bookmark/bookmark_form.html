@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}bookmark_form.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+ <div class="container">
+<b/>
+      <!-- Page Heading/Breadcrumbs -->
+     <br />
+     <br />
+
+
+
+      <h1 class="mt-3 mb-8"><h1>구매자_구독 등록</h1>
+      </h1>
+<br />
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          각 품목에 대한 수량과 원하는 가격을 정해주세요.
+            <br />
+            <br />
+ <form action="." method="post">{% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">정확한 값을 입력해주세요.</p>
+    {% endif %}
+
+
+<b/>
+    <fieldset class="aligned">
+
+        <div class="form-row">
+            <h3> 품목 :　</h3>    {{ form.title }}
+        </div>
+
+        <div class="form-row">
+            <h3> 가격 :　</h3>    {{ form.price}}
+        </div>
+
+        <div class="form-row">
+            <h3> 수량 :　</h3> {{ form.amount }}
+        </div>
+
+    </fieldset>
+
+    <fieldset class="aligned">
+            {{ form.star.label_tag }} {{ form.star }}
+    </fieldset>
+
+    <div class="submit-row">
+        <input type="submit" value="Submit"/>
+    </div>
+
+    <script type="text/javascript">document.getElementById('id_title').focus();</script>
+    </form>
+
+</div>
+      </ol>
+
+
+
+{% endblock %}
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Econovation</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

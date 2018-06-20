@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}album_list.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+{% block content %}
+<div id="content" style="margin-left:40px;">
+
+<br/><br/><br/>
+    {% for item in object_list %}
+
+    <div class="clear_float">
+        <h2 style="display:inline"><a href="{% url 'photo:album_detail' item.id %}">{{ item.name }}</a></h2>
+        &emsp;<b><i>{{ item.description }}</i></b>
+    </div>
+
+    <hr align=""width=""size="10">
+
+    <div class="album-list">
+        <div class="row">
+        {% for photo in item.photo_set.all|slice:":10" %}
+        <div class="col-mg-2 col-sm-2  portfolio-item">
+            <div class="card h-100">
+            <a href="{{ photo.get_absolute_url }}"><img class="card-img-top" src="{{ photo.image.thumb_url }}"alt="" /></a>
+           <div class="card-body">
+              <h4 class="card-title"> </h4>
+                <a href="{{ photo.get_absolute_url }}"> {{photo.origin}}</a>
+             <p>평점 점수 : {{ photo.Subscription_ratings }}점 <br/> 재 구매 횟수 : {{ photo.purchase_after_sub }}번 </p> </div>
+            </div>
+          </div>
+
+
+
+
+        {% endfor %}
+    </div>
+</div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}

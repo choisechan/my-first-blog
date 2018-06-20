@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+
+{% block title %}gudok_add.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div id="content" style="margin-left:40px;">
+
+    <h1>{{user}}님, 농산물 구매 가 성공하셨습니다.</h1>
+    <h2>축하드립니다.</h1>
+      {{account}}
+
+</div>
+{% endblock %}

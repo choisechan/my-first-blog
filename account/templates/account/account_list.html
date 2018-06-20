@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}account_list.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+
+
+{% block content %}
+
+<div id="content">
+    </br></br></br>
+    <h2>{{user}}님의 개인정보 입니다.</h2>
+
+
+    {% for item in object_list %}
+
+    <div class="clear_float">
+    <li><b><i>계좌 정보 : {{ item.account }}</i></b></li>
+	<li><b><i>주소 정보 : {{ item.address }}</i></b></li>
+	<li><b><i>주소 정보 : {{ item.p_key }}</i></b></li>
+    <li><b><i>회원 구분 : {{ item.group }}</i></b></li>
+
+</div>
+
+
+{%endfor%}
+
+    </div>
+{% endblock %}

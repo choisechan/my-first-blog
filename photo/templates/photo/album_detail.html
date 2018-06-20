@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}album_detail.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+{% block content %}
+<div id="content" style="margin-left:40px;">
+<br/><br/><br/><br/>
+    <h2 style="display:inline">{{ object.name }}</h2>
+    &emsp;<b><i>{{ object.description }}</i></b>
+
+    <hr/>
+     <div class="row">
+         {% for photo in object.photo_set.all %}
+        <div class="col-mg-2 col-lg-2 portfolio-item">
+          <div class="card h-100">
+            <a href="{{ photo.get_absolute_url }}"><img class="card-img-top" src="{{ photo.image.thumb_url }}" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#"> <li>{{ photo.origin }}</li></a>
+              </h4>
+              <p> 평점 점수 : {{ photo.Subscription_ratings }}점 <br/> 재 구매 횟수 : {{ photo.purchase_after_sub }}번  </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

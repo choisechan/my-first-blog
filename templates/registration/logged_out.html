@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}logged_out.html{% endblock %}
+
+{% block content %}
+<div id="content">
+
+    <h1>정상적으로 로그아웃 되셨습니다. </h1>
+
+    <p>"사이트를 이용해주셔서 감사합니다. 다음에 또 이용해 주세요."</p>
+
+    <p><a href="{% url 'login' %}">로그인</a></p>
+
+</div>
+{% endblock %}

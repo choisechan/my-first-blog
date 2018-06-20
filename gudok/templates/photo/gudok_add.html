@@ -1,0 +1,92 @@
+
+{% extends "base.html" %}
+
+{% block title %}gudok_add.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+<b/>
+<br />
+    <br />
+    <br />
+
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">{{user}}님의 구독 등록.
+
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+        </li>
+        이곳은 농수산물을 등록하는 곳 입니다.
+        </li>
+      </ol>
+
+      <!-- Content Row -->
+      <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-lg-3 mb-4">
+          <div class="list-group">
+
+          
+
+            <div id="content">
+
+
+
+
+
+    {% if form.is_multipart %}
+    <form enctype="multipart/form-data" method="post" action=".">
+    {% else %}
+    <form method="post" action=".">
+    {% endif %}
+    {% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">Wrong! Please correct the error(s) below.</p>
+    {% endif %}
+
+
+
+            <form method="POST" class="post-form">{% csrf_token %}
+                 {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Save</button>
+            </form>
+
+
+    <script type="text/javascript">document.getElementById('id_album').focus();</script>
+
+    </form>
+
+</div>
+{% endblock %}
+          </div>
+        </div>
+        <!-- Content Column -->
+        </div>
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,84 @@
+
+{% extends "base.html" %}
+
+{% block title %}photo_form.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div id="content" style="margin-left:40px;">
+
+</br></br></br>
+    <h1>{{user}}님의 농수산물 등록하기</h1>
+
+
+    <div class="row">
+    {% if form.is_multipart %}
+    <form enctype="multipart/form-data" method="post" action=".">
+
+    {% else %}
+    <form method="post" action=".">
+    {% endif %}
+    {% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">Wrong! Please correct the error(s) below.</p>
+    {% endif %}
+
+
+    <p>이곳은 농수산물을 등록하는 곳 입니다.</p>
+    <fieldset class="aligned">
+
+        <div class="form-row">
+
+            {{ '품목 : ' }} {{ form.album }}
+            <button type="button"><a href="{% url 'photo:album_add' %}">Add Album</a></button>
+        </div>
+
+        <div class="form-row">
+            {{ '사진 : ' }} {{ form.image }}
+        </div>
+
+
+       <div class="form-row">
+            {{ '수량 : ' }} {{ form.cnt }}
+        </div>
+
+        <div class="form-row">
+            {{'가격 : ' }} {{ form.price }}
+        </div>
+
+
+        <div class="form-row">
+            {{ '원산지 : ' }} {{ form.origin }}
+        </div>
+
+        <div class="form-row">
+            {{ '구독평점 :   ' }}  {{form.Subscription_ratings}}
+        </div>
+
+        <div class="form-row">
+            {{ '구독 후 구매수 : ' }}  {{form.purchase_after_sub}}
+        </div>
+
+
+
+
+        <div class="form-row">
+            {{ form.description.label_tag }} {{ form.description }}
+        </div>
+
+    </fieldset>
+
+    <div class="submit-row">
+        <input type="submit" value="Submit"/>
+    </div>
+
+    <script type="text/javascript">document.getElementById('id_album').focus();</script>
+
+    </form>
+        </div>
+
+</div>
+{% endblock %}

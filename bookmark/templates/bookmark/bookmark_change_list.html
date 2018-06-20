@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}bookmark_change_list.html{% endblock %}
+
+{% block content %}
+<div id="content" style="margin-left:40px;">
+</br></br></br>
+    <h1>평점주기 - {{user}}</h1>
+</br>
+    <table class="change-list">
+        <tr>
+            <th>제품명&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+            <th>수량&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+            <th>평가 하기</th>
+        </tr>
+
+        {% for item in bookmark %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ item.amount }}개</td>
+            <td><a href="{% url 'bookmark:update' item.id %}">별점 주기</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

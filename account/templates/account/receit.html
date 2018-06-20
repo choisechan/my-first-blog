@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" ng-app>
+  <head>
+    <title>Ropsten transaction check</title>
+  </head>
+  <body>
+    <div class="container" >
+      <h1>Contract info.</h1>
+      <span id="countIns"></span>
+      <input id="address" type="textfiled"></input>
+      <button id="addressbtn" onclick ="myFunction()">check transaction</button>
+      <br>
+
+      </div>
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script>
+
+        /* global $ */
+          var string;
+
+
+          function myFunction(){
+          var url = "https://api-ropsten.etherscan.io/api?module=account&action=txlist&address="+$("#address").val()+"&startblock=0&endblock=99999999&sort=asc&apikey=YourApiKeyToken";
+          var req = new XMLHttpRequest();
+
+          req.open('GET', url, false);
+          req.send(null);
+          string = req.responseText;
+         // document.getElementById("text").innerHTML = req.response;
+          var pars = JSON.parse(string);
+          for(var i=1;i<pars.result.length;i++){
+            var results = pars.result[i] ;
+            var br = document.createElement("BR");
+            var para = document.createElement("P");
+            var d = document.getElementById("transaction");
+            var t = document.createTextNode("From : " + results.from);
+            para.appendChild(t);
+            d.appendChild(para);
+            d.appendChild(br);
+
+            var t = document.createTextNode(" To : "+ results.to);
+            para.appendChild(t);
+            d.appendChild(para);
+            d.appendChild(br);
+
+            var t = document.createTextNode(" txHash : "+results.hash);
+            para.appendChild(t);
+            d.appendChild(para);
+            d.appendChild(br);
+
+            var t = document.createTextNode(" inputData : "+ results.input);
+            para.appendChild(t);
+            d.appendChild(para);
+            para.appendChild(br);
+          }
+        }
+
+
+        </script>
+      <div class="transaction" id = "transaction"></div>
+  </body>
+</html>
